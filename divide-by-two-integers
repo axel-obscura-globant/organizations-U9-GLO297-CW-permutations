@@ -1,0 +1,35 @@
+function divide(dividend, divisor){
+  //Handle special cases where dividend is 0 or divisor is 1
+  if(dividend === 0){
+    return 0;
+  }
+  if(divisor === 1){
+    return dividend;
+  }
+
+  // Get the sign of the result
+  const negative = (dividend < 0) ^ (divisor < 0);
+
+  // Convert both dividend and divisor to positive numbers
+  let dividendPositive = Math.abs(dividend);
+  const divisorPositive = Math.abs(divisor);
+
+  let quotient = 0;
+  while(dividendPositive >= divisorPositive){
+    dividendPositive -= divisorPositive;
+    quotient++;
+  }
+
+  if(negative){
+    quotient = -quotient;
+  }
+
+  // Ensure the result is within the 32-bit signed integer range
+  if(quotient > 2147483647){
+    return 2147483647;
+  } else if(quotient < -2147483647){
+    return -2147483647;
+  } else {
+    return quotient;
+  }
+}
