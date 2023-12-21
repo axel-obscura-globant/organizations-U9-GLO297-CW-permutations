@@ -1,0 +1,14 @@
+function groupAnagrams(strs) {
+  const anagramMap = {};
+
+  strs.forEach(str => {
+    const sortedStr = str.split('').sort().join('');
+    if (anagramMap[sortedStr]) {
+      anagramMap[sortedStr].push(str);
+    } else {
+      anagramMap[sortedStr] = [str];
+    }
+  });
+
+  return Object.values(anagramMap);
+}
